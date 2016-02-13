@@ -4,7 +4,7 @@ class TicTacToeGame {
     constructor() {
         this._player1 = 1;
         this._player2 = 2;
-        this._gameBoard = [1,1,0,0,0,1,1,1,0];
+        this._gameBoard = [0,0,0,0,0,0,0,0,0];
         this._turn = 1; //current player's turn
         this._player1Wins = 0;
         this._player2Wins = 0;
@@ -43,30 +43,29 @@ class TicTacToeGame {
     
     get gameOver() { 
         var b = this._gameBoard;
-        // console.log(b[3] == b[4] == b[5]) //SL
+        //all the possible winning strategies in threes
+        var strategies = [0,1,2,3,4,5,6,7,8,0,3,6,1,4,7,2,5,8,0,4,8,2,4,6];
         
-        // incorrect logic! fix later.
-        if (b[0] == b[1] == b[2] ||
-            b[3] == b[4] == b[5] ||
-            b[6] == b[7] == b[8] ||
-            b[0] == b[3] == b[6] ||
-            b[1] == b[4] == b[7] ||
-            b[2] == b[5] == b[8] ||
-            b[0] == b[4] == b[8] ||
-            b[2] == b[4] == b[6]) {
-                this._winner = this._turn;
-                // console.log("winner!")//SL
-                return true; //winner, game over
+        for (var i = 0; i < strategies.length; i+=3) {
+            if (b[i] == 1 && b[i+1] == 1 && b[i+2] == 1) {
+                console.log("player 1 is the winner!");
+                this._winner = 1;
+                return true; //player 1 winner, game over
+            } else if (b[i] == 2 && b[i+1] == 2 && b[i+2] == 2) {
+                console.log("player 2 is the winner!");
+                this._winner = 2;
+                return true; //player 2 winner, game over
             }
+        }
             
         for (var i = 0; i < b.length; i++) {
-            if (b[i] === 0) {
-                // console.log("no winner yet!")//SL
+            if (b[i] == 0) {
+                console.log("no winner yet!")//SL
                 return false //no winner, game is ongoing
             }
         }
         this._turn = undefined;
-        // console.log("no winner!")//SL
+        console.log("no winner, game over!")//SL
         return true; //tie, game over
     }
     
@@ -86,8 +85,8 @@ class TicTacToeGame {
     }
 }
 
-var temp = new TicTacToeGame();
-console.log(temp.gameOver) //SL
+// var temp = new TicTacToeGame(); //SL
+// console.log("gameOver: " + temp.gameOver) //SL
 
 //export classes to be available to other modules.
 module.exports.TicTacToeGame = TicTacToeGame;
