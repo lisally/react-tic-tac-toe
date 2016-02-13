@@ -3,10 +3,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var HelloMessage = React.createClass({
+var Title = React.createClass({
   render: function() {
-    return <h1>Hello World</h1>;
+    return <h1>Tic Tac Toe</h1>;
   }
 });
 
-ReactDOM.render(<HelloMessage />, document.getElementById('content'));
+ReactDOM.render(<Title />, document.getElementById('content'));
