@@ -1,3 +1,4 @@
+// MVC components
 'use strict'
 
 var React = require('react');
@@ -99,7 +100,7 @@ var GameGrid = React.createClass({
             return (
                 <div>
                 {allRows}
-                <button onClick={this.handleClick}>Play Again</button>   
+                <button id="playagain" onClick={this.handleClick}>Play Again</button>   
                 </div>
             )
         } else {
